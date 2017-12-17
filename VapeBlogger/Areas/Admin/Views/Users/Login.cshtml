@@ -1,0 +1,23 @@
+﻿@model LoginViewModel
+@{
+    
+    Layout = null;
+}
+
+<html>
+<head>
+    <title>Login Form</title>
+
+    <link href="~/adminCss/abc.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login">
+        <h1>Giriş</h1>
+        <form asp-action="Login" method="post">
+            <input asp-for="UserName" type="text"  placeholder="Kullanıcı Adı" />
+            <input asp-for="Password" type="password"  placeholder="Şifre" />
+            <button type="submit" class="btn btn-primary btn-block btn-large">Giriş Yap</button>
+        </form>
+    </div>
+</body>
+</html>
