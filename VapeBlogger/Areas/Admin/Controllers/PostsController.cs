@@ -58,7 +58,7 @@ namespace VapeBlogger.Areas.Admin.Controllers
         public IActionResult Create()
         {
             Security.LoginCheck(HttpContext);
-            var post = new Post();
+            Post post = new Post();
             post.CreateDate = DateTime.Now;
             post.CreatedBy = User.Identity.Name;
             post.UpdateDate = DateTime.Now;
@@ -82,24 +82,29 @@ namespace VapeBlogger.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .gif veya .png olmalıdır.");
             }
-
+            else if (upload == null && post.Photo == null)
+            {
+                ModelState.AddModelError("Photo", "Resim yüklemeniz gerekmektedir.");
+            }
             if (ModelState.IsValid)
             {
                 post.CreateDate = DateTime.Now;
                 post.CreatedBy = User.Identity.Name;
                 post.UpdateDate = DateTime.Now;
                 post.UpdatedBy = User.Identity.Name;
+                post.PublishDate = DateTime.Now;
+
                 // dosya yüklemesi
-                string fileName = await UploadFileAsync(upload);
-                if (fileName != null)
+                
+                if (upload != null && upload.Length > 0 && IsExtensionValid(upload))
                 {
-                    post.Photo = fileName;
+                    post.Photo = await UploadFileAsync(upload);
                 }
                 _context.Add(post);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", post.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", post.CategoryId);
             return View(post);
         }
 
@@ -117,7 +122,7 @@ namespace VapeBlogger.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", post.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", post.CategoryId);
             return View(post);
         }
 
@@ -138,18 +143,22 @@ namespace VapeBlogger.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("Photo", "Dosya uzantısı .jpg, .jpeg, .gif veya .png olmalıdır.");
             }
-
+            else if (upload == null && post.Photo == null)
+            {
+                ModelState.AddModelError("Photo", "Resim yüklemeniz gerekmektedir.");
+            }
             if (ModelState.IsValid)
             {
                 try
                 {
                     post.UpdateDate = DateTime.Now;
                     post.UpdatedBy = User.Identity.Name;
+                    post.PublishDate = DateTime.Now;
                     // dosya yüklemesi
-                    string fileName = await UploadFileAsync(upload);
-                    if (fileName != null)
+      
+                    if (upload != null && upload.Length > 0 && IsExtensionValid(upload))
                     {
-                        post.Photo = fileName;
+                        post.Photo = await UploadFileAsync(upload);
                     }
                     _context.Update(post);
                     await _context.SaveChangesAsync();
@@ -167,7 +176,7 @@ namespace VapeBlogger.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Id", post.CategoryId);
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", post.CategoryId);
             return View(post);
         }
 
