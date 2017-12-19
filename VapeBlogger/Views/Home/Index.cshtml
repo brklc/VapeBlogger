@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<VapeBlogger.Models.Post>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,118 +8,25 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                 <div class="small-post-slider owl-carousel owl-theme">
+                    @foreach(var item in Model) { 
                     <div class="item">
                         <div class="small-post">
                             <div class="small-thumb">
-                                <a href="standard-post.html">
-                                    <img alt="" src="images/small-posts/small-11.jpg" class="">
+                                <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">
+                                    <img style="width:100px; height:100px;" src="/uploads/@item.Photo" class="">
                                 </a>
                             </div>
+                                                
                             <div class="post-content">
-                                <h3> <a href="standard-post.html">i see passion in football players that cant be seen anywhere</a> </h3>
+                                <h3> <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a> </h3>
                                 <ul class="post-tools">
-                                    <li title="Comments"> <a href="#"><i class="ti-thought"></i> 90</a> </li>
-                                    <li>  January 10, 2015 </li>
+                                    <li title="Comments"> <a href="#"><i class="ti-thought"></i> </a> </li>
+                                    <li>  @item.PublishDate </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="small-post">
-                            <div class="small-thumb">
-                                <a href="standard-post.html">
-                                    <img alt="" src="images/small-posts/small-12.jpg" class="">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <h3> <a href="standard-post.html">i see passion in football players that cant be seen anywhere</a> </h3>
-                                <ul class="post-tools">
-                                    <li title="Comments"> <a href="#"><i class="ti-thought"></i> 90</a> </li>
-                                    <li>  January 10, 2015 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="small-post">
-                            <div class="small-thumb">
-                                <a href="standard-post.html">
-                                    <img alt="" src="images/small-posts/small-13.jpg" class="">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <h3> <a href="standard-post.html">i see passion in football players that cant be seen anywhere</a> </h3>
-                                <ul class="post-tools">
-                                    <li title="Comments"> <a href="#"><i class="ti-thought"></i> 90</a> </li>
-                                    <li>  January 10, 2015 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="small-post">
-                            <div class="small-thumb">
-                                <a href="standard-post.html">
-                                    <img alt="" src="images/small-posts/small-14.jpg" class="">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <h3> <a href="standard-post.html">i see passion in football players that cant be seen anywhere</a> </h3>
-                                <ul class="post-tools">
-                                    <li title="Comments"> <a href="#"><i class="ti-thought"></i> 90</a> </li>
-                                    <li>  January 10, 2015 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="small-post">
-                            <div class="small-thumb">
-                                <a href="standard-post.html">
-                                    <img alt="" src="images/small-posts/small-15.jpg" class="">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <h3> <a href="standard-post.html">i see passion in football players that cant be seen anywhere</a> </h3>
-                                <ul class="post-tools">
-                                    <li title="Comments"> <a href="#"><i class="ti-thought"></i> 90</a> </li>
-                                    <li>  January 10, 2015 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="small-post">
-                            <div class="small-thumb">
-                                <a href="standard-post.html">
-                                    <img alt="" src="images/small-posts/small-16.jpg" class="">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <h3> <a href="standard-post.html">i see passion in football players that cant be seen anywhere</a> </h3>
-                                <ul class="post-tools">
-                                    <li title="Comments"> <a href="#"><i class="ti-thought"></i> 90</a> </li>
-                                    <li>  January 10, 2015 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="small-post">
-                            <div class="small-thumb">
-                                <a href="standard-post.html">
-                                    <img alt="" src="images/small-posts/small-17.jpg" class="">
-                                </a>
-                            </div>
-                            <div class="post-content">
-                                <h3> <a href="standard-post.html">i see passion in football players that cant be seen anywhere</a> </h3>
-                                <ul class="post-tools">
-                                    <li title="Comments"> <a href="#"><i class="ti-thought"></i> 90</a> </li>
-                                    <li>  January 10, 2015 </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
@@ -135,59 +43,27 @@
                             <div class="heading colored">
                                 <h2 class="main-heading">Gündem</h2>
                                 <span class="heading-ping"></span>
-                                <span class="heading-read-more">
-                                    <a href="#" class="btn btn-black">all</a>
-                                    <a href="#" class="btn btn-green">travel</a>
-                                    <a href="#" class=" btn btn-red">fashion</a>
-                                </span>
+                               
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
+
                         <div class="posts-masonry">
+                            @foreach (var item in Model)
+                            {
                             <article class="col-md-4 col-sm-6 col-xs-12">
+                              
                                 <div class="grid-1 gride-style-2">
                                     <div class="picture">
                                         <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/slider/slide-44.jpg">
+                                            <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">
+                                                <img alt="@item.Title" class="img-responsive" src="/uploads/@item.Photo" style="width:600px; height:250px;">
                                             </a>
                                             <div class="catname">
                                                 <a class="btn btn-gray" href="#">
-                                                    <div>Food and Health</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-music-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Burger King brings romance to Valentine's Day with two-holed soda cup</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  12 Hours Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/slider/slide-43.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-pink" href="#">
-                                                    <div>Life Style</div>
+                                                    <div>@item.Category.Name</div>
                                                 </a>
                                             </div>
                                             <div class="hover-show-div">
@@ -200,544 +76,20 @@
                                     <div class="detail">
                                         <div class="caption">
                                             <h5>
-                                                <a href="standard-post.html">Super Bowl battles a domain for being John M.</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/slider/slide-37.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-lightblue" href="#">
-                                                    <div>technology</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-image"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Canon's new cameras are perfect for Casey Neistat wannabes </a>
+                                                <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a>
                                             </h5>
                                         </div>
                                         <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  5 mins Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
+                                            <li> by <a href="#"> <strong> @item.CreatedBy</strong> </a></li>
+                                            <li>  @item.CreateDate </li>
                                         </ul>
                                     </div>
                                 </div>
+                               
                             </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <div class="catname">
-                                                <a class="btn btn-maroon" href="#">
-                                                    <div>Sports</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-music-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Footbal Player steps forward to lead the National Park</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  1 Month Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/42.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-lightblue" href="#">
-                                                    <div>technology</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-image"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Charity is buying a search engine for research papers</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  5 mins Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/43.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-maroon" href="#">
-                                                    <div>Sports</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-video-camera"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Wanda Durant, 'the real MVP,' still has her son's back after heated NBA homecoming</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  1 Month Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/slider/slide-38.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-green" href="#">
-                                                    <div>Travel</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-music-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Computer issue for United Airlines in the U.S.</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  5 Hours Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/slider/slide-39.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-pink" href="#">
-                                                    <div>Life Style</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-quote-left"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Super Bowl battles a domain for being John M.</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  3 Hours ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/17.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-lightblue" href="#">
-                                                    <div>technology</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-image"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  5 mins Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/19.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-maroon" href="#">
-                                                    <div>Sports</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-music-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Footbal Player steps forward to lead the National Park</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  1 Month Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/42.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-lightblue" href="#">
-                                                    <div>technology</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-image"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Charity is buying a search engine for research papers</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  5 mins Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/43.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-maroon" href="#">
-                                                    <div>Sports</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-music-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Footbal Player steps forward to lead the National Park</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  1 Month Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/15.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-green" href="#">
-                                                    <div>Travel</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-music-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Computer issue for United Airlines in the U.S.</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/16.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-pink" href="#">
-                                                    <div>Life Style</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-quote-left"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Super Bowl battles a domain for being John M.</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  3 Hours ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/17.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-lightblue" href="#">
-                                                    <div>technology</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-image"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Charity is buying a search engine for research papers</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  5 mins Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/19.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-maroon" href="#">
-                                                    <div>Sports</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-music-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Footbal Player steps forward to lead the National Park</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  1 Month Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/42.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-lightblue" href="#">
-                                                    <div>technology</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-image"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Charity is buying a search engine for research papers</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  5 mins Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/43.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-maroon" href="#">
-                                                    <div>Sports</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-music-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Footbal Player steps forward to lead the National Park</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  1 Month Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="grid-1 gride-style-2">
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Columbia students explain the meanings of their Chinese names to fight racism</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  1 Month Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
+                        }
                         </div>
+
                     </div>
                     <div class="pagination-holder">
                         <nav>
