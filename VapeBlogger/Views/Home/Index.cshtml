@@ -57,7 +57,9 @@
                             @foreach (var item in Model)
                             {
                             <article class="col-md-4 col-sm-6 col-xs-12">
-                              
+                              @{ 
+                                  string secenek = item.Category.Name;
+                              }
                                 <div class="grid-1 gride-style-2">
                                     <div class="picture">
                                         <div class="category-image">
@@ -71,7 +73,17 @@
                                             </div>
                                             <div class="hover-show-div">
                                                 <a href="#" class="post-type">
-                                                    <i class="ti-quote-left"></i>
+                                                    @if (secenek == "Magazin") {
+                                                    <i class="ti-video-camera"></i>
+                                                    }
+                                                    else if(secenek=="Spor"){ 
+                                                    <i class="ti-image"></i>
+                                                    }
+                                                    else if (secenek == "Müzik")
+                                                    {
+                                                        <i class="ti-music"></i>
+
+                                                    }
                                                 </a>
                                             </div>
                                         </div>

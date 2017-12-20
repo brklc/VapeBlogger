@@ -59,7 +59,10 @@
             </div>
         </div>
     </div>
-
+    @{ 
+        
+        var date = DateTime.Now.ToString("dddd, MMMM d, yyyy");
+    }
     <section class="topbar">
         <div class="container">
             <div class="row">
@@ -78,7 +81,7 @@
                     </div>
                     <div class="col-md-6 col-sm-9 col-xs-12">
                         <ul class="">
-                            <li> <i class="ti-calendar"></i> Saturday 28 January, 2017</li>
+                            <li> <i class="ti-calendar"></i>@date</li>
                             <li><a href="#"><i class="ti-stats-up"></i> Advertize</a></li>
                             <li><a href="#"><i class="ti-share"></i> Follow</a></li>
                             <li><a href="#"> <i class="ti-user"></i> login</a></li>
