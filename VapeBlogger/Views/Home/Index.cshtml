@@ -59,6 +59,7 @@
                             <article class="col-md-4 col-sm-6 col-xs-12">
                               @{ 
                                   string secenek = item.Category.Name;
+                                  
                               }
                                 <div class="grid-1 gride-style-2">
                                     <div class="picture">
@@ -67,9 +68,23 @@
                                                 <img alt="@item.Title" class="img-responsive" src="/uploads/@item.Photo" style="width:600px; height:250px;">
                                             </a>
                                             <div class="catname">
-                                                <a class="btn btn-gray" href="#">
+                                                @if(secenek == "Magazin") { 
+                                                <a class="btn btn-pink" href="#">
                                                     <div>@item.Category.Name</div>
                                                 </a>
+                                                }
+                                                else if (secenek == "Spor")
+                                                {
+                                                    <a class="btn btn-green" href="#">
+                                                        <div>@item.Category.Name</div>
+                                                    </a>
+                                                }
+                                                else if (secenek == "Müzik")
+                                                {
+                                                    <a class="btn btn-blue" href="#">
+                                                        <div>@item.Category.Name</div>
+                                                    </a>
+                                                }
                                             </div>
                                             <div class="hover-show-div">
                                                 <a href="#" class="post-type">
