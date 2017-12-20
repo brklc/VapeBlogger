@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using VapeBlogger.Data;
 using Microsoft.EntityFrameworkCore;
+using VapeBlogger.Models;
 
 namespace VapeBlogger.Controllers
 {
@@ -22,9 +23,10 @@ namespace VapeBlogger.Controllers
 
         public IActionResult Details(int? id)
         {
-            var post = context.Posts
-                .Include(p => p.Category)
-                .SingleOrDefaultAsync(m => m.Id == id);
+
+            var post = context.Posts.Include(i => i.Category)
+                .Where(n => (id != null ? n.CategoryId == id : true) && n.IsPublished == true)
+                .OrderByDescending(o => o.PublishDate).ToList();
             if (post == null)
             {
                 return NotFound();
