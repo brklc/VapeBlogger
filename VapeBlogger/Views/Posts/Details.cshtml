@@ -12,21 +12,17 @@
 
 
                 <div class="post-entry">
-                    <h2> </h2>
-                    <div class="catname">
-                        <a class="btn btn-dark-red" href="#">
-                            <div></div>
-                        </a>
-                    </div>
+                    <h2> @Model.Title</h2>
+                   
                     <ul class="post-tools">
-                        <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
+                        <li> by <a href="#"> <strong> @Model.CreatedBy</strong> </a></li>
                         <li class="post-share">  <strong> 23</strong> Shares </li>
-                        <li> March 01, 2016 </li>
+                        <li> @Model.CreateDate.ToShortDateString() </li>
                         <li> <a href="#"> <i class="ti-thought"></i> 157</a> </li>
                         <li> <i class="ti-eye"></i> 2563 </li>
                     </ul>
 
-                    <div class="picture"> <img alt="@Model.Title" class="img-responsive" src="/uploads/@Model.Photo"> </div>
+                    <div class="picture"> <img alt="@Model.Title" class="img-responsive" style="width:980px; height:450px;" src="/uploads/@Model.Photo"> </div>
                     <p>
                         @Model.Description
                     </p>
@@ -81,124 +77,42 @@
             <div class="col-md-4 col-sm-12 col-xs-12" id="side-bar-right">
                 <div class="theiaStickySidebar">
                     <aside>
+                        
                         <div class="widget widget-bg">
                             <div class="heading">
-                                <h2 class="main-heading">Search here</h2>
-                                <span class="heading-ping"></span>
-                            </div>
-
-                        </div>
-                        <div class="widget widget-bg">
-                            <div class="heading">
-                                <h2 class="main-heading">Most Read Posts</h2>
+                                <h2 class="main-heading">En Çok Okunan Gönderiler</h2>
                                 <span class="heading-ping"></span>
                             </div>
                             <ul class="tabs-posts">
+                                @foreach(var item in (IEnumerable<PostsViewModel>)ViewBag.Posts) {
                                 <li>
-                                    <div class="pic"> <a href="standard-post.html"><img alt="" class="img-responsive" src="images/small-posts/recent-1.jpg"></a> </div>
-                                    <div class="caption"> <a href="standard-post.html">In their own words: What 'Invasion Day' means to a rural Indigenous</a> </div>
+                                    <div class="pic"> <a href="standard-post.html"><img alt="@item.Id" style="width:60px; height:60px;" class="img-responsive" src="~/uploads/@item.Photo"></a> </div>
+                                    <div class="caption"> <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a> </div>
                                     <ul class="post-tools">
-                                        <li>  June 22, 2017 </li>
-                                        <li> <i class="ti-eye"></i> 558 </li>
+                                        <li>  @item.CreateDate </li>
+                                       
                                     </ul>
                                 </li>
-                                <li>
-                                    <div class="pic"> <a href="standard-post.html"><img alt="" class="img-responsive" src="images/small-posts/recent-2.jpg"></a> </div>
-                                    <div class="caption"> <a href="standard-post.html">The assault on federally supported </a> </div>
-                                    <ul class="post-tools">
-                                        <li>  May 10, 2014 </li>
-                                        <li> <i class="ti-eye"></i> 1558 </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="pic"> <a href="standard-post.html"><img alt="" class="img-responsive" src="images/small-posts/recent-3.jpg"></a> </div>
-                                    <div class="caption"> <a href="standard-post.html">Presidential campaigns is too odd</a> </div>
-                                    <ul class="post-tools">
-                                        <li>  June 30, 2014 </li>
-                                        <li> <i class="ti-eye"></i> 2653 </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="pic"> <a href="standard-post.html"><img alt="" class="img-responsive" src="images/small-posts/recent-8.jpg"></a> </div>
-                                    <div class="caption"> <a href="standard-post.html">PWhy people 'breadcrumb' each other on Tinder </a> </div>
-                                    <ul class="post-tools">
-                                        <li>  Aug 30, 2016 </li>
-                                        <li> <i class="ti-eye"></i> 6541 </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <div class="pic"> <a href="standard-post.html"><img alt="" class="img-responsive" src="images/small-posts/small-4.jpg"></a> </div>
-                                    <div class="caption"> <a href="standard-post.html">Don't believe the gruesome rumors about this MLB pitcher's death</a> </div>
-                                    <ul class="post-tools">
-                                        <li>  April 01, 2016 </li>
-                                        <li> <i class="ti-eye"></i> 9874 </li>
-                                    </ul>
-                                </li>
+                                }
                             </ul>
                         </div>
+                        
+                       
                         <div class="widget widget-bg">
                             <div class="heading">
-                                <h2 class="main-heading">Advertizement</h2>
+                                <h2 class="main-heading">Kategoriler</h2>
                                 <span class="heading-ping"></span>
                             </div>
-                            <div class="ad-div style-box">
-                                <a href="https://themeforest.net/item/hashpro-listing-and-directory-template/16901616">
-                                    <img src="images/ads/300-8.jpg" class="img-responsive " alt="">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="widget widget-bg rss-widget">
-                            <div class="heading">
-                                <h2 class="main-heading">RSS Subscription</h2>
-                                <span class="heading-ping"></span>
-                            </div>
-                            <div class="newsletter">
-                                <form class="form-inline">
-                                    <div class="form-group">
-                                        <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
-                                    </div>
-                                    <button type="submit" class="btn btn-default"><i class="ti-angle-right"></i></button>
-                                </form>
-                                <p> Lorem Ipsum is simply dummy text of the printing and typesetting industry.  </p>
-                            </div>
-                        </div>
-                        <div class="widget widget-bg">
-                            <div class="heading">
-                                <h2 class="main-heading">Category Widget</h2>
-                                <span class="heading-ping"></span>
-                            </div>
+                            
                             <ul class="cat-holder">
-                                <li> <a href="#">Magazine</a> <i class="count">( 80 )</i> </li>
-                                <li> <a href="#">Lifestyle</a> <i class="count">( 12 )</i> </li>
-                                <li> <a href="#">Fashion</a> <i class="count">( 11 )</i> </li>
-                                <li> <a href="#">Photography</a> <i class="count">( 14 )</i> </li>
-                                <li> <a href="#">Sports</a> <i class="count">( 10 )</i> </li>
-                                <li> <a href="#">Technology</a> <i class="count">( 11 )</i> </li>
+                                @foreach (var category in (IEnumerable<CategoryViewModel>)ViewBag.Categories)
+                                {
+                                <li> <a asp-action="Index" asp-controller="Home" asp-route-id="@category.Id">@category.Name</a> <i class="count">( @category.Count )</i> </li>
+                                 }
                             </ul>
+                           
                         </div>
-                        <div class="widget widget-bg">
-                            <div class="heading">
-                                <h2 class="main-heading">Archive Posts</h2>
-                                <span class="heading-ping"></span>
-                            </div>
-                            <ul class="tabs-posts">
-                                <li>
-                                    <div class="caption"> <a href="standard-post.html">In their own words: What 'Invasion Day' means to a rural Indigenous</a> </div>
-                                </li>
-                                <li>
-                                    <div class="caption"> <a href="standard-post.html">The assault on federally supported </a> </div>
-                                </li>
-                                <li>
-                                    <div class="caption"> <a href="standard-post.html">Presidential campaigns is too odd</a> </div>
-                                </li>
-                                <li>
-                                    <div class="caption"> <a href="standard-post.html">PWhy people 'breadcrumb' each other on Tinder </a> </div>
-                                </li>
-                                <li>
-                                    <div class="caption"> <a href="standard-post.html">Don't believe the gruesome rumors about this MLB pitcher's death</a> </div>
-                                </li>
-                            </ul>
-                        </div>
+                        
                     </aside>
                 </div>
             </div>

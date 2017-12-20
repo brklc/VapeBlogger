@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VapeBlogger.Models.Post>
+﻿
 
 @inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 <!DOCTYPE html>
@@ -99,7 +99,7 @@
                     <ul class="menu-logo hidden-md">
                         <li>
                             <a asp-controller="Home" asp-action="Index">
-                                <img src="images/logo-small.png" class="img-responsive" alt="logo">
+                                <img src="/images/logo-small.png" class="img-responsive" alt="logo">
                             </a>
                         </li>
                     </ul>
@@ -111,14 +111,18 @@
                             </form>
                         </li>
                     </ul>
+
+                  
                     <ul class="menu-links pull-right">
                         @foreach(var category in (IEnumerable<CategoryViewModel>)ViewBag.Categories) { 
                         <li class="@(ViewBag.ActiveCategory!=null&&category.Id==ViewBag.ActiveCategory.Id?"active":"")">
-                            <a asp-action="Index" asp-route-id="@category.Id">
+
+                            <a asp-action="Index" asp-controller="Home" asp-route-id="@category.Id">
                                 <span class="text"> @category.Name</span>
                             </a>
                         </li>
                         }
+                        
                     </ul>
                     <ul class="menu-search-bar-desktop">
                         <li>
@@ -137,7 +141,7 @@
             </div>
         </nav>
     </section>
-
+    
 
 
     @RenderBody()
@@ -157,7 +161,7 @@
                         <h2>Güncel Gönderiler</h2>
                         <ul class="tabs-posts">
                             <li>
-                                <div class="pic"> <a href="standard-post.html"><img alt="" class="img-responsive" src="images/small-posts/small-1.jpg"></a> </div>
+                                <div class="pic"> <a href="standard-post.html"><img alt="" class="img-responsive" src="/images/small-posts/small-1.jpg"></a> </div>
                                 <div class="caption"> <a href="standard-post.html">Stern talking-to from your parents</a> </div>
                                 <ul class="post-tools">
                                     <li>  Jan 21, 2016 </li>
@@ -165,7 +169,7 @@
                                 </ul>
                             </li>
                             <li>
-                                <div class="pic"> <a href="standard-post.html"><img alt="" class="img-responsive" src="images/small-posts/small-2.jpg"></a> </div>
+                                <div class="pic"> <a href="standard-post.html"><img alt="" class="img-responsive" src="/images/small-posts/small-2.jpg"></a> </div>
                                 <div class="caption"> <a href="standard-post.html">The assault on federally supported </a> </div>
                                 <ul class="post-tools">
                                     <li>  Feb 28, 2016 </li>

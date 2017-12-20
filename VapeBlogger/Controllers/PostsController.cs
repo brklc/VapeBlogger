@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using VapeBlogger.Data;
 using Microsoft.EntityFrameworkCore;
 using VapeBlogger.Models;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace VapeBlogger.Controllers
 {
@@ -16,6 +17,16 @@ namespace VapeBlogger.Controllers
         {
             this.context = context;
         }
+        public override void OnActionExecuting(ActionExecutingContext filerContext)
+        {
+            ViewBag.Categories = context.Categories.Select(c => new CategoryViewModel { Id = c.Id, Name = c.Name, Count = c.Posts.Count }).ToList();
+
+            if (filerContext.RouteData.Values["id"] != null)
+            {
+                ViewBag.ActiveCategory = context.Categories.FirstOrDefault(c => c.Id.ToString() == filerContext.RouteData.Values["id"].ToString());
+            }
+            base.OnActionExecuting(filerContext);
+        }
         public IActionResult Index()
         {
             return View();
@@ -23,10 +34,11 @@ namespace VapeBlogger.Controllers
 
         public IActionResult Details(int? id)
         {
+            ViewBag.Posts = context.Posts.Select(c => new PostsViewModel { Id = c.Id, Photo = c.Photo, Title = c.Title, CreateDate = c.CreateDate.ToString() }).ToList();
 
             var post = context.Posts.Include(i => i.Category)
-                .Where(n => (id != null ? n.CategoryId == id : true) && n.IsPublished == true)
-                .OrderByDescending(o => o.PublishDate).ToList();
+                .Where(p => p.Id == id)
+                .FirstOrDefault();
             if (post == null)
             {
                 return NotFound();

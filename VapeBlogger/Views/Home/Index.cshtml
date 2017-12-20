@@ -8,30 +8,33 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 nopadding">
                 <div class="small-post-slider owl-carousel owl-theme">
-                    @foreach(var item in Model) { 
-                    <div class="item">
-                        <div class="small-post">
-                            <div class="small-thumb">
-                                <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">
-                                    <img style="width:100px; height:100px;" src="/uploads/@item.Photo" class="">
-                                </a>
-                            </div>
-                                                
-                            <div class="post-content">
-                                <h3> <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a> </h3>
-                                <ul class="post-tools">
-                                    <li title="Comments"> <a href="#"><i class="ti-thought"></i> </a> </li>
-                                    <li>  @item.PublishDate </li>
-                                </ul>
+                    @foreach (var item in Model)
+                    {
+                        <div class="item">
+                            <div class="small-post">
+                                <div class="small-thumb">
+                                    <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">
+                                        <img style="width:100px; height:100px;" src="/uploads/@item.Photo" class="">
+                                    </a>
+                                </div>
+
+                                <div class="post-content">
+                                    <h3> <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a> </h3>
+                                    <ul class="post-tools">
+                                        <li title="Comments"> <a href="#"><i class="ti-thought"></i> </a> </li>
+                                        <li>  @item.CreateDate.ToShortDateString() </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     }
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+
 
 <section class="main-content">
     <div class="container">
