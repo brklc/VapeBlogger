@@ -28,52 +28,11 @@
                     </p>
 
 
-                    <div class="related-posts">
-                        <div class="heading colored">
-                            <h2 class="main-heading">Related Posts</h2>
-                            <span class="heading-ping"></span>
-                        </div>
-                        <div class="row">
-                            <article class="col-md-4 col-sm-4 col-xs-12">
-                                <div class="grid-1">
-                                    <div class="picture">
-                                        <div class="category-image">
-                                            <a href="standard-post.html">
-                                                <img alt="" class="img-responsive" src="images/posts/40.jpg">
-                                            </a>
-                                            <div class="catname">
-                                                <a class="btn btn-green" href="#">
-                                                    <div>Travel</div>
-                                                </a>
-                                            </div>
-                                            <div class="hover-show-div">
-                                                <a href="#" class="post-type">
-                                                    <i class="ti-music-alt"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="detail">
-                                        <div class="caption">
-                                            <h5>
-                                                <a href="standard-post.html">Computer issue for United Airlines in the U.S.</a>
-                                            </h5>
-                                        </div>
-                                        <ul class="post-tools">
-                                            <li> by <a href="#"> <strong> Arsoo</strong> </a></li>
-                                            <li>  5 Hours Ago </li>
-                                            <li><a href="#"> <i class="ti-thought"></i> 57</a> </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </article>
-
-                        </div>
-                    </div>
-
 
                 </div>
+
             </div>
+
             <div class="col-md-4 col-sm-12 col-xs-12" id="side-bar-right">
                 <div class="theiaStickySidebar">
                     <aside>
@@ -84,12 +43,13 @@
                                 <span class="heading-ping"></span>
                             </div>
                             <ul class="tabs-posts">
+                               
                                 @foreach(var item in (IEnumerable<PostsViewModel>)ViewBag.Posts) {
                                 <li>
-                                    <div class="pic"> <a href="standard-post.html"><img alt="@item.Id" style="width:60px; height:60px;" class="img-responsive" src="~/uploads/@item.Photo"></a> </div>
+                                    <div class="pic"> <a href=""><img alt="@item.Id" style="width:60px; height:60px;" class="img-responsive" src="~/uploads/@item.Photo"></a> </div>
                                     <div class="caption"> <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a> </div>
                                     <ul class="post-tools">
-                                        <li>  @item.CreateDate </li>
+                                        <li>  @item.CreateDate.ToShortDateString() </li>
                                        
                                     </ul>
                                 </li>
