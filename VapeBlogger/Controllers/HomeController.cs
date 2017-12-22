@@ -30,7 +30,7 @@ namespace VapeBlogger.Controllers
         }
         public IActionResult Index(int? id)
         {
-
+            
             var post = context.Posts.Include(i => i.Category)
                 .Where(n => (id != null ? n.CategoryId == id : true) && n.IsPublished == true)
                 .OrderByDescending(o => o.PublishDate).ToList();

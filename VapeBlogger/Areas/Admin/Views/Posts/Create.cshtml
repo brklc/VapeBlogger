@@ -6,7 +6,7 @@
 }
 
 <h2>Create</h2>
-<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+
 <h4>Post</h4>
 <hr />
 <div class="row">
@@ -26,7 +26,6 @@
             
             <div class="form-group">
                 <label asp-for="Photo" class="control-label"></label>
-                <img src="~/uploads/@Model.Photo" class="img img-thumbnail" style="max-width:100px;" />
                 <input type="file" name="upload" class="form-control" />
                 <input asp-for="Photo" type="hidden" />
                 <span asp-validation-for="Photo" class="text-danger"></span>
@@ -75,8 +74,7 @@
 <script>
     CKEDITOR.replace('Description');
 </script>
-
-<script src="https://cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.8.0/full/ckeditor.js"></script>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 

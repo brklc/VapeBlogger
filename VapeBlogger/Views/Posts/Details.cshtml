@@ -72,6 +72,26 @@
                             </ul>
                            
                         </div>
+                        <div class="widget widget-bg">
+                            <div class="heading">
+                                <h2 class="main-heading">Benzer Haberler</h2>
+                                <span class="heading-ping"></span>
+                            </div>
+                            <ul class="tabs-posts">
+
+                                @foreach (var post in )
+                                {
+                                    <li>
+                                        <div class="pic"> <a href=""><img alt="@post.Id" style="width:60px; height:60px;" class="img-responsive" src="~/uploads/@post.Photo"></a> </div>
+                                        <div class="caption"> <a asp-action="Details" asp-controller="Posts" asp-route-id="@post.Id">@post.Id</a> </div>
+                                        <ul class="post-tools">
+                                            <li>  @post.CreateDate.ToShortDateString() </li>
+
+                                        </ul>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
                         
                     </aside>
                 </div>
