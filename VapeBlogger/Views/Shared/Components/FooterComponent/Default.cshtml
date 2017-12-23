@@ -1,0 +1,14 @@
+﻿@model IEnumerable<VapeBlogger.Models.Post>
+
+    @foreach (var item in Model)
+    {
+
+        <li>
+            <div class="pic"> <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id"><img alt="" class="img-responsive" src="~/uploads/@item.Photo"></a> </div>
+            <div class="caption"> <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a> </div>
+            <ul class="post-tools">
+                <li>  @item.CreateDate.ToShortDateString() </li>
+                
+            </ul>
+        </li>
+    }

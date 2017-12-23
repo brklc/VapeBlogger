@@ -59,8 +59,8 @@
             </div>
         </div>
     </div>
-    @{ 
-        
+    @{
+
         var date = DateTime.Now.ToString("dddd, MMMM d, yyyy");
     }
     <section class="topbar">
@@ -83,7 +83,7 @@
                     <div class="col-md-6 col-sm-9 col-xs-12">
                         <ul class="">
                             <li> <i class="ti-calendar"></i>@date</li>
-                           
+
                         </ul>
                     </div>
                 </div>
@@ -114,17 +114,18 @@
                         </li>
                     </ul>
 
-                  
-                    <ul class="menu-links pull-right">
-                        @foreach(var category in (IEnumerable<CategoryViewModel>)ViewBag.Categories) { 
-                        <li class="@(ViewBag.ActiveCategory!=null&&category.Id==ViewBag.ActiveCategory.Id?"active":"")">
 
-                            <a asp-action="Index" asp-controller="Home" asp-route-id="@category.Id">
-                                <span class="text"> @category.Name</span>
-                            </a>
-                        </li>
+                    <ul class="menu-links pull-right">
+                        @foreach (var category in (IEnumerable<CategoryViewModel>)ViewBag.Categories)
+                        {
+                            <li class="@(ViewBag.ActiveCategory!=null&&category.Id==ViewBag.ActiveCategory.Id?"active":"")">
+
+                                <a asp-action="Index" asp-controller="Home" asp-route-id="@category.Id">
+                                    <span class="text"> @category.Name</span>
+                                </a>
+                            </li>
                         }
-                        
+
                     </ul>
                     <ul class="menu-search-bar-desktop">
                         <li>
@@ -143,7 +144,19 @@
             </div>
         </nav>
     </section>
-    
+    <section class="my-breadcrumb">
+        <div class="container page-banner">
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-xs-12">
+                    <h1>Contact Us</h1>
+                    <ol class="breadcrumb">
+                        <li><a asp-action="Index" asp-controller="Home">Anasayfa</a></li>
+                        <li class="active">İletişim</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
     @RenderBody()
@@ -155,27 +168,28 @@
                     <div class="col-md-3 col-sm-6 col-xs-12">
                         <div class="footer-block">
                             <img src="/images/logo-footer.png" alt="" class="logo-footer">
-                            
+
                         </div>
                     </div>
 
                     <div class="col-md-3 col-sm-6 col-xs-12 no-padding">
                         <h2>Günün Gönderileri</h2>
                         <ul class="tabs-posts">
-                           @await Component.InvokeAsync("FooterComponent")
-                     
+                            @await Component.InvokeAsync("FooterComponent")
+
                         </ul>
                     </div>
                     <div class="col-xs-12 col-md-3 col-sm-6 ">
                         <h2>Kategoriler</h2>
                         @foreach (var category in (IEnumerable<CategoryViewModel>)ViewBag.Categories)
                         {
-                            <div class="@(ViewBag.ActiveCategory!=null&&category.Id==ViewBag.ActiveCategory.Id?"active":"") tag-list"> <a asp-action="Index" asp-controller="Home" asp-route-id="@category.Id">@category.Name</a>
-                        
-                        </div>
-                            
+                            <div class="@(ViewBag.ActiveCategory!=null&&category.Id==ViewBag.ActiveCategory.Id?"active":"") tag-list">
+                                <a asp-action="Index" asp-controller="Home" asp-route-id="@category.Id">@category.Name</a>
+
+                            </div>
+
                         }
-                        
+
                     </div>
                     <div class="col-md-3 col-sm-6 col-xs-12 no-padding">
                         <h2>Contact Detail</h2>

@@ -8,20 +8,20 @@ using VapeBlogger.Data;
 
 namespace VapeBlogger.Models
 {
-    public class PostViewComponent: ViewComponent
+    public class PostComponent: ViewComponent
     {
         public readonly ApplicationDbContext _context;
-        public PostViewComponent(ApplicationDbContext context)
+        public PostComponent(ApplicationDbContext context)
         {
             this._context = context;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int CatId)
+        public async Task<IViewComponentResult> InvokeAsync(int catId)
         {
-           var ca =await _context.Posts.Include(i => i.Category)
-                .Where(c => c.CategoryId == CatId).ToListAsync();
-
-            return View(ca);
+          var a = await _context.Posts.Include(i => i.Category)
+                .Where(c => c.CategoryId == catId).ToListAsync();
+            ViewBag.a = a;
+            return View(a);
         }
     }
 }

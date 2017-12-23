@@ -4,13 +4,14 @@
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <section class="main-content">
     <div class="container">
         <div class="row">
 
             <div class="col-md-8 col-sm-8 col-xs-12">
 
-
+                
                 <div class="post-entry">
                     <h2> @Model.Title</h2>
                    
@@ -74,22 +75,12 @@
                         </div>
                         <div class="widget widget-bg">
                             <div class="heading">
-                                <h2 class="main-heading">Benzer Haberler</h2>
+                                <h2 class="main-heading">Benzer Gönderiler</h2>
                                 <span class="heading-ping"></span>
                             </div>
                             <ul class="tabs-posts">
 
-                                @foreach (var post in )
-                                {
-                                    <li>
-                                        <div class="pic"> <a href=""><img alt="@post.Id" style="width:60px; height:60px;" class="img-responsive" src="~/uploads/@post.Photo"></a> </div>
-                                        <div class="caption"> <a asp-action="Details" asp-controller="Posts" asp-route-id="@post.Id">@post.Id</a> </div>
-                                        <ul class="post-tools">
-                                            <li>  @post.CreateDate.ToShortDateString() </li>
-
-                                        </ul>
-                                    </li>
-                                }
+                                @await Component.InvokeAsync("PostComponent", new { catId = Model.CategoryId })
                             </ul>
                         </div>
                         
