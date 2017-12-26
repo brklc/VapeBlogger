@@ -34,11 +34,13 @@ namespace VapeBlogger.Controllers
 
         public IActionResult Details(int? id)
         {
+
             ViewBag.Posts = context.Posts.Select(c => new PostsViewModel { Id = c.Id, Photo = c.Photo, Title = c.Title, CreateDate = c.CreateDate }).ToList();
 
             var post = context.Posts.Include(i => i.Category)
                 .Where(p => p.Id == id)
                 .FirstOrDefault();
+           
             if (post == null)
             {
                 return NotFound();
@@ -46,5 +48,6 @@ namespace VapeBlogger.Controllers
 
             return View(post);
         }
+       
     }
 }
