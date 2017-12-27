@@ -20,12 +20,16 @@ namespace VapeBlogger.Data
         public DbSet<Post> Posts { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
                 .HasAlternateKey(c => c.Email)
                 .HasName("AlternateKey_UserEmail");
+
+            modelBuilder.Entity<PostComment>()
+           .HasKey(t => new { t.PostId, t.CommentId });
         }
     }
 }

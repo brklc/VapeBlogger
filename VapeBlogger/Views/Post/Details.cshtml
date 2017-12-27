@@ -31,6 +31,51 @@
 
 
                 </div>
+@foreach (var item in (IEnumerable<CommentViewModel>)ViewBag.Comment)
+{
+                <div class="reviews" style="margin-top:100px;">
+                    <h3>Total Coments (46)</h3>
+                    <ol class="comment-list">
+                        <li class="comment">
+                            <div class="comment-info">
+                                <div class="author-desc">
+                                    <div class="author-title">
+                                        <strong>@item.FullName</strong>
+                                        <ul class="list-inline pull-right">
+                                            <li>@item.CreateDate.ToShortDateString() </li>
+                                           
+                                        </ul>
+                                    </div>
+                                    <p>@item.MyComment</p>
+                                </div>
+                            </div>
+                           
+                        </li>
+                        
+                    </ol>
+                </div>
+}
+                <div class="commentform" style="margin-top:50px;">
+                    <form class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <div class="form-group">
+                                <label>Ad Soyad <span class="required">*</span></label>
+                                <input class="form-control" placeholder="" type="text">
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label>Yorum <span class="required">*</span></label>
+                                <textarea class="form-control" placeholder="" rows="8" cols="6"></textarea>
+                            </div>
+                        </div>
+                      
+                       
+                        <div class="col-md-12 col-sm-12">
+                            <input value="Yorum Yap" class="btn btn-colored-blog" type="submit">
+                        </div>
+                    </form>
+                </div>
 
             </div>
 
