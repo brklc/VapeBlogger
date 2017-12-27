@@ -20,7 +20,7 @@
                         <li class="post-share">  <strong> 23</strong> Shares </li>
                         <li> @Model.CreateDate.ToShortDateString() </li>
                         <li> <a href="#"> <i class="ti-thought"></i> 157</a> </li>
-                        <li> <i class="ti-eye"></i> 2563 </li>
+                        <li> <i class="ti-eye"></i> @Model.Hits </li>
                     </ul>
 
                     <div class="picture"> <img alt="@Model.Title" class="img-responsive" style="width:980px; height:450px;" src="/uploads/@Model.Photo"> </div>
@@ -48,7 +48,7 @@
                                 @foreach(var item in (IEnumerable<PostsViewModel>)ViewBag.Posts) {
                                 <li>
                                     <div class="pic"> <a href=""><img alt="@item.Id" style="width:60px; height:60px;" class="img-responsive" src="~/uploads/@item.Photo"></a> </div>
-                                    <div class="caption"> <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a> </div>
+                                    <div class="caption"> <a asp-action="Details" asp-controller="Post" asp-route-id="@item.Id">@item.Title</a> </div>
                                     <ul class="post-tools">
                                         <li>  @item.CreateDate.ToShortDateString() </li>
                                        

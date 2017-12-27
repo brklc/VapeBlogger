@@ -10,10 +10,10 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace VapeBlogger.Controllers
 {
-    public class PostsController : Controller
+    public class PostController : Controller
     {
         private ApplicationDbContext context;
-        public PostsController(ApplicationDbContext context)
+        public PostController(ApplicationDbContext context)
         {
             this.context = context;
         }
@@ -40,11 +40,13 @@ namespace VapeBlogger.Controllers
             var post = context.Posts.Include(i => i.Category)
                 .Where(p => p.Id == id)
                 .FirstOrDefault();
-           
             if (post == null)
             {
                 return NotFound();
             }
+            post.Hits +=1;
+            context.SaveChanges();
+           
 
             return View(post);
         }

@@ -13,13 +13,13 @@
                         <div class="item">
                             <div class="small-post">
                                 <div class="small-thumb">
-                                    <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">
+                                    <a asp-action="Details" asp-controller="Post" asp-route-id="@item.Id">
                                         <img style="width:100px; height:100px;" src="/uploads/@item.Photo" class="">
                                     </a>
                                 </div>
 
                                 <div class="post-content">
-                                    <h3> <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a> </h3>
+                                    <h3> <a asp-action="Details" asp-controller="Post" asp-route-id="@item.Id">@item.Title</a> </h3>
                                     <ul class="post-tools">
                                         <li title="Comments"> <a href="#"><i class="ti-thought"></i> </a> </li>
                                         <li>  @item.CreateDate.ToShortDateString() </li>
@@ -64,7 +64,7 @@
                                 <div class="grid-1 gride-style-2">
                                     <div class="picture">
                                         <div class="category-image">
-                                            <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">
+                                            <a asp-action="Details" asp-controller="Post" asp-route-id="@item.Id">
                                                 <img alt="@item.Title" class="img-responsive" src="/uploads/@item.Photo" style="width:600px; height:250px;">
                                             </a>
                                             <div class="catname">
@@ -106,7 +106,7 @@
                                     <div class="detail">
                                         <div class="caption">
                                             <h5>
-                                                <a asp-action="Details" asp-controller="Posts" asp-route-id="@item.Id">@item.Title</a>
+                                                <a asp-action="Details" asp-controller="Post" asp-route-id="@item.Id">@item.Title</a>
                                             </h5>
                                         </div>
                                         <ul class="post-tools">
