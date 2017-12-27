@@ -35,8 +35,7 @@ namespace VapeBlogger.Controllers
         public IActionResult Details(int? id)
         {
 
-            ViewBag.Posts = context.Posts.Select(c => new PostsViewModel { Id = c.Id, Photo = c.Photo, Title = c.Title, CreateDate = c.CreateDate }).ToList();
-
+            ViewBag.Posts = context.Posts.Select(c => new PostsViewModel { Id = c.Id, Photo = c.Photo, Title = c.Title, CreateDate = c.CreateDate, Hits = c.Hits }).OrderByDescending(c => c.Hits).Take(5).ToList();
             var post = context.Posts.Include(i => i.Category)
                 .Where(p => p.Id == id)
                 .FirstOrDefault();
