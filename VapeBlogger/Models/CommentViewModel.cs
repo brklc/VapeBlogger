@@ -10,6 +10,6 @@ namespace VapeBlogger.Models
         public int Id { get; set; }
         public string FullName { get; set; }
         public DateTime CreateDate { get; set; }
-        public string MyComment { get; set; }
+        public string Article { get; set; }
     }
 }

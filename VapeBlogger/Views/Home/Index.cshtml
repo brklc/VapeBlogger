@@ -1,7 +1,10 @@
-﻿@model IEnumerable<VapeBlogger.Models.Post>
+﻿@model ReflectionIT.Mvc.Paging.PagingList<VapeBlogger.Models.Post>
+@using ReflectionIT.Mvc.Paging
+@addTagHelper *, ReflectionIT.Mvc.Paging
 @{
     ViewData["Title"] = "Home Page";
 }
+
 
 <section class="top-small-post-slider">
     <div class="container">
@@ -123,23 +126,8 @@
                     </div>
                     <div class="pagination-holder">
                         <nav>
-                            <ul class="pagination">
-                                <li>
-                                    <a aria-label="Previous" href=" #"><span aria-hidden="true"><i class="fa fa-angle-left"></i></span></a>
-                                </li>
-                                <li class="active">
-                                    <a href=" #">1 <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li>
-                                    <a href=" #">2</a>
-                                </li>
-                                <li>
-                                    <a href=" #">3</a>
-                                </li>
-                                <li>
-                                    <a aria-label="Next" href=" #"><span aria-hidden="true"><i class="fa fa-angle-right"></i></span></a>
-                                </li>
-                            </ul>
+                            @await this.Component.InvokeAsync("Pager",new { pagingList = this.Model})
+                            
                         </nav>
                     </div>
                 </div>

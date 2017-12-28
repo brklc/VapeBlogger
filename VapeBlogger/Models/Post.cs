@@ -30,6 +30,7 @@ namespace VapeBlogger.Models
         [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
 
-        public ICollection<PostComment> PostComment { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+
     }
 }

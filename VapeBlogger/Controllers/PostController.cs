@@ -34,7 +34,7 @@ namespace VapeBlogger.Controllers
 
         public IActionResult Details(int? id)
         {
-            ViewBag.Comment = context.Comments.Select(co => new CommentViewModel { Id = co.Id, FullName = co.FullName, MyComment = co.MyComment, CreateDate = co.CreateDate }).ToList();
+            ViewBag.Comment = context.Comments.Select(co => new CommentViewModel { Id = co.Id, Article = co.Article, CreateDate = co.CreateDate, FullName = co.FullName }).ToList();
             ViewBag.Posts = context.Posts.Select(c => new PostsViewModel { Id = c.Id, Photo = c.Photo, Title = c.Title, CreateDate = c.CreateDate, Hits = c.Hits }).OrderByDescending(c => c.Hits).Take(5).ToList();
             var post = context.Posts.Include(i => i.Category)
                 .Where(p => p.Id == id)
@@ -48,6 +48,27 @@ namespace VapeBlogger.Controllers
            
 
             return View(post);
+        }
+        
+     
+        
+        public JsonResult SendComment( string fullName, string article,int postid)
+        {
+            
+            Comment c = new Comment();
+            c.PostId = postid;
+            c.FullName = fullName;
+            c.Article = article;
+            c.CreateDate = DateTime.Now;
+            c.CreatedBy = fullName;
+            c.IsPublished = false;
+           
+                context.Add(c);
+                context.SaveChanges();
+          
+           
+
+            return Json(RedirectToAction("Home"));
         }
        
     }

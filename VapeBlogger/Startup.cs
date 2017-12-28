@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using VapeBlogger.Data;
 using Microsoft.EntityFrameworkCore;
+using ReflectionIT.Mvc.Paging;
 
 namespace VapeBlogger
 {
@@ -29,6 +30,7 @@ namespace VapeBlogger
 
             // Adds a default in-memory implementation of IDistributedCache.
             services.AddDistributedMemoryCache();
+            services.AddPaging();
 
             services.AddSession(options =>
             {

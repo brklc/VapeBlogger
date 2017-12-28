@@ -22,6 +22,14 @@
                         <li> <a href="#"> <i class="ti-thought"></i> 157</a> </li>
                         <li> <i class="ti-eye"></i> @Model.Hits </li>
                     </ul>
+                    <ul class="social-share">
+                        <li class="facebook"> <a rel="nofollow" href="http://www.facebook.com/share.php?u=<;url>" onclick="return fbs_click()"><i class="fa fa-facebook"></i> Facebook</a></li>
+                        <li class="google"> <a href="#"><i class="fa fa-google"></i> Google Plus</a></li>
+                        <li class="twitter"> <a href="#"> <i class="fa fa-twitter"></i> Twitter</a></li>
+                        <li class="linkedin"> <a href="#"> <i class="fa fa-linkedin"></i> LinkedIn</a></li>
+                        <li class="pinterest"><a href="#"> <i class="fa fa-pinterest"></i> Pinterest</a></li>
+                        
+                    </ul>
 
                     <div class="picture"> <img alt="@Model.Title" class="img-responsive" style="width:980px; height:450px;" src="/uploads/@Model.Photo"> </div>
                     <p>
@@ -31,48 +39,50 @@
 
 
                 </div>
-@foreach (var item in (IEnumerable<CommentViewModel>)ViewBag.Comment)
-{
+               
                 <div class="reviews" style="margin-top:100px;">
+                    @foreach( var com in (IEnumerable<CommentViewModel>)ViewBag.Comment){
                     <h3>Total Coments (46)</h3>
                     <ol class="comment-list">
                         <li class="comment">
                             <div class="comment-info">
                                 <div class="author-desc">
                                     <div class="author-title">
-                                        <strong>@item.FullName</strong>
+                                        <strong>@com.FullName</strong>
                                         <ul class="list-inline pull-right">
-                                            <li>@item.CreateDate.ToShortDateString() </li>
+                                            <li>@com.CreateDate.ToShortDateString() </li>
                                            
                                         </ul>
                                     </div>
-                                    <p>@item.MyComment</p>
+                                    <p>@com.Article</p>
                                 </div>
                             </div>
                            
                         </li>
                         
                     </ol>
+                    }
                 </div>
-}
+               
+
                 <div class="commentform" style="margin-top:50px;">
                     <form class="row">
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Ad Soyad <span class="required">*</span></label>
-                                <input class="form-control" placeholder="" type="text">
+                                <input id="fullnames" class="form-control" placeholder="" type="text">
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12">
                             <div class="form-group">
                                 <label>Yorum <span class="required">*</span></label>
-                                <textarea class="form-control" placeholder="" rows="8" cols="6"></textarea>
+                                <textarea id="yorum" class="form-control" placeholder="" rows="8" cols="6"></textarea>
                             </div>
                         </div>
                       
                        
                         <div class="col-md-12 col-sm-12">
-                            <input value="Yorum Yap" class="btn btn-colored-blog" type="submit">
+                            <input value="Yorum Yap" class="btn btn-colored-blog" type="submit" id="gonder">
                         </div>
                     </form>
                 </div>
@@ -136,4 +146,37 @@
     </div>
 </section>
 
+    <!-- Core Jquery -->
+<script src="~/js/jquery.min.js" type="text/javascript"></script>
+<!-- Jquery Plugin -->
+<script src="~/js/jquery-migrate.min.js" type="text/javascript"></script>
+<!-- Bootstrap Core Js -->
+<script src="~/js/bootstrap.min.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#gonder").click(function () {
+            var yorumunuz = $("#yorum").val();
+            var adsoyad = $("fullnames").val();
+            $.ajax({
+                url: '/Post/SendComment',
+                data: { fullName: adsoyad, article: yorumunuz, postid: @Model.Id },
+                type: 'POST',
+                dataType: 'json',
+                success: function (data) {
+                    alert("Yorumunuz Gönderildi. Yönetici onayından sonra yayınlanacaktır.");}
+
+            });
+
+        });
+
+    })
+</script>
+
+<script>
+    function fbs_click() {
+        u = location.href; t = document.title;
+        window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(u) + '&t=' + encodeURIComponent(t), 'sharer', 'toolbar=0,status=0,width=626,height=436');
+        return false;
+    }
+</script>

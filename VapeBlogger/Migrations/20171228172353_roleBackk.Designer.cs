@@ -11,9 +11,10 @@ using VapeBlogger.Data;
 namespace VapeBlogger.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171228172353_roleBackk")]
+    partial class roleBackk
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,33 +42,6 @@ namespace VapeBlogger.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("VapeBlogger.Models.Comment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Article")
-                        .IsRequired();
-
-                    b.Property<DateTime>("CreateDate");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(200);
-
-                    b.Property<string>("FullName")
-                        .IsRequired();
-
-                    b.Property<bool>("IsPublished");
-
-                    b.Property<int>("PostId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("VapeBlogger.Models.Post", b =>
@@ -137,14 +111,6 @@ namespace VapeBlogger.Migrations
                         .HasName("AlternateKey_UserEmail");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("VapeBlogger.Models.Comment", b =>
-                {
-                    b.HasOne("VapeBlogger.Models.Post", "Post")
-                        .WithMany("Comments")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("VapeBlogger.Models.Post", b =>

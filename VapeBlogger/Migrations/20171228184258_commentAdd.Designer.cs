@@ -11,9 +11,10 @@ using VapeBlogger.Data;
 namespace VapeBlogger.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20171228184258_commentAdd")]
+    partial class commentAdd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,15 +52,8 @@ namespace VapeBlogger.Migrations
                     b.Property<string>("Article")
                         .IsRequired();
 
-                    b.Property<DateTime>("CreateDate");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(200);
-
                     b.Property<string>("FullName")
                         .IsRequired();
-
-                    b.Property<bool>("IsPublished");
 
                     b.Property<int>("PostId");
 

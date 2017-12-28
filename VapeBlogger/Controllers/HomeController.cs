@@ -8,6 +8,7 @@ using VapeBlogger.Models;
 using VapeBlogger.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Filters;
+using ReflectionIT.Mvc.Paging;
 
 namespace VapeBlogger.Controllers
 {
@@ -28,13 +29,14 @@ namespace VapeBlogger.Controllers
             }
             base.OnActionExecuting(filerContext);
         }
-        public IActionResult Index(int? id)
+        public async Task<IActionResult> Index(int? id, int page =1)
         {
             
             var post = context.Posts.Include(i => i.Category)
-                .Where(n => (id != null ? n.CategoryId == id : true) && n.IsPublished == true)
-                .OrderByDescending(o => o.PublishDate).ToList();
-            return View(post);
+                .Where(n => (id != null ? n.CategoryId == id : true) && n.IsPublished == true).AsNoTracking()
+                .OrderByDescending(o => o.PublishDate);
+            var model = await PagingList<Post>.CreateAsync(post, 9, page);
+            return View(model);
         }
 
         public IActionResult About()
