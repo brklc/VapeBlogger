@@ -41,27 +41,33 @@
                 </div>
                
                 <div class="reviews" style="margin-top:100px;">
-                    @foreach( var com in Model.Comments){
+                   
                     <h3>Total Coments (46)</h3>
                     <ol class="comment-list">
                         <li class="comment">
                             <div class="comment-info">
+                                    @foreach (var com in ViewBag.Commentss)
+                                    {
                                 <div class="author-desc">
                                     <div class="author-title">
+                                    
                                         <strong>@com.FullName</strong>
                                         <ul class="list-inline pull-right">
                                             <li>@com.CreateDate.ToShortDateString() </li>
                                            
                                         </ul>
+                                   
+
                                     </div>
                                     <p>@com.Article</p>
                                 </div>
+                                    }
                             </div>
                            
                         </li>
                         
                     </ol>
-                    }
+                   
                 </div>
                
 
@@ -82,7 +88,7 @@
                       
                        
                         <div class="col-md-12 col-sm-12">
-                            <input value="Yorum Yap" class="btn btn-colored-blog" type="submit" id="gonder">
+                            <button class="btn btn-colored-blog" type="button" id="gonder">Yorum Yap</button>
                         </div>
                     </form>
                 </div>
@@ -146,13 +152,7 @@
     </div>
 </section>
 
-    <!-- Core Jquery -->
-<script src="~/js/jquery.min.js" type="text/javascript"></script>
-<!-- Jquery Plugin -->
-<script src="~/js/jquery-migrate.min.js" type="text/javascript"></script>
-<!-- Bootstrap Core Js -->
-<script src="~/js/bootstrap.min.js" type="text/javascript"></script>
-
+@section js{
 <script type="text/javascript">
     $(document).ready(function () {
         $("#gonder").click(function () {
@@ -164,7 +164,11 @@
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-                    alert("Yorumunuz Gönderildi. Yönetici onayından sonra yayınlanacaktır.");}
+
+                    alert("Yorumunuz Gönderildi. Yönetici onayından sonra yayınlanacaktır.");
+                    window.location.reload();
+                }
+
 
             });
 
@@ -172,6 +176,7 @@
 
     })
 </script>
+}
 
 <script>
     function fbs_click() {
