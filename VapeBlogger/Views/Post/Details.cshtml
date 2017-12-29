@@ -41,7 +41,7 @@
                 </div>
                
                 <div class="reviews" style="margin-top:100px;">
-                    @foreach( var com in (IEnumerable<CommentViewModel>)ViewBag.Comment){
+                    @foreach( var com in Model.Comments){
                     <h3>Total Coments (46)</h3>
                     <ol class="comment-list">
                         <li class="comment">
@@ -70,7 +70,7 @@
                         <div class="col-md-6 col-sm-12">
                             <div class="form-group">
                                 <label>Ad Soyad <span class="required">*</span></label>
-                                <input id="fullnames" class="form-control" placeholder="" type="text">
+                                <input id="fullnames" class="form-control" type="text">
                             </div>
                         </div>
                         <div class="col-md-12 col-sm-12">
@@ -157,7 +157,7 @@
     $(document).ready(function () {
         $("#gonder").click(function () {
             var yorumunuz = $("#yorum").val();
-            var adsoyad = $("fullnames").val();
+            var adsoyad = $("#fullnames").val();
             $.ajax({
                 url: '/Post/SendComment',
                 data: { fullName: adsoyad, article: yorumunuz, postid: @Model.Id },

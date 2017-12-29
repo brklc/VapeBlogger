@@ -11,5 +11,6 @@ namespace VapeBlogger.Models
         public string FullName { get; set; }
         public DateTime CreateDate { get; set; }
         public string Article { get; set; }
+        public Post Post { get; set; }
     }
 }

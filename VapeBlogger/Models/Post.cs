@@ -9,6 +9,10 @@ namespace VapeBlogger.Models
 {
     public class Post
     {
+        public Post()
+        {
+            Comments = new HashSet<Comment>();
+        }
         public int Id { get; set; }
         [StringLength(200)]
         public string Title { get; set; }

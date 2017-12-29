@@ -34,8 +34,8 @@ namespace VapeBlogger.Controllers
 
         public IActionResult Details(int? id)
         {
-            ViewBag.Comment = context.Comments.Select(co => new CommentViewModel { Id = co.Id, Article = co.Article, CreateDate = co.CreateDate, FullName = co.FullName }).ToList();
-            ViewBag.Posts = context.Posts.Select(c => new PostsViewModel { Id = c.Id, Photo = c.Photo, Title = c.Title, CreateDate = c.CreateDate, Hits = c.Hits }).OrderByDescending(c => c.Hits).Take(5).ToList();
+           
+            ViewBag.Posts = context.Posts.Include(c=>c.Comments).Select(c => new PostsViewModel { Id = c.Id, Photo = c.Photo, Title = c.Title, CreateDate = c.CreateDate, Hits = c.Hits }).OrderByDescending(c => c.Hits).Take(5).ToList();
             var post = context.Posts.Include(i => i.Category)
                 .Where(p => p.Id == id)
                 .FirstOrDefault();
@@ -51,24 +51,23 @@ namespace VapeBlogger.Controllers
         }
         
      
-        
-        public JsonResult SendComment( string fullName, string article,int postid)
+        [HttpPost]
+        public JsonResult SendComment( string fullName, string article, int postId)
         {
             
             Comment c = new Comment();
-            c.PostId = postid;
             c.FullName = fullName;
             c.Article = article;
+            c.PostId = postId;
             c.CreateDate = DateTime.Now;
-            c.CreatedBy = fullName;
             c.IsPublished = false;
            
-                context.Add(c);
-                context.SaveChanges();
+            context.Add(c);
+            context.SaveChanges();
           
            
 
-            return Json(RedirectToAction("Home"));
+            return Json(true);
         }
        
     }
