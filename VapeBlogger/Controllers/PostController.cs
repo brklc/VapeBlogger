@@ -54,6 +54,7 @@ namespace VapeBlogger.Controllers
         [HttpPost]
         public JsonResult SendComment( string fullName, string article, int postId)
         {
+           
             
             Comment c = new Comment();
             c.FullName = fullName;
@@ -61,12 +62,12 @@ namespace VapeBlogger.Controllers
             c.PostId = postId;
             c.CreateDate = DateTime.Now;
             c.IsPublished = false;
-           
+          if(fullName != null && article != null) { 
             context.Add(c);
             context.SaveChanges();
-    
-
+            }
             return Json(true);
+           
         }
        
     }

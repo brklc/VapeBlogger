@@ -82,7 +82,7 @@ namespace VapeBlogger.Areas.Admin.Controllers
         // GET: Admin/Users/Create
         public IActionResult Create()
         {
-            //Security.LoginCheck(HttpContext);
+            Security.LoginCheck(HttpContext);
             var user = new User();
             user.CreateDate = DateTime.Now;
             user.CreatedBy = User.Identity.Name;
@@ -98,7 +98,7 @@ namespace VapeBlogger.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Email,Password,ConfirmPassword,CreateDate,CreatedBy,UpdateDate,UpdatedBy")] User user)
         {
-            //Security.LoginCheck(HttpContext);
+            Security.LoginCheck(HttpContext);
             if (ModelState.IsValid)
             {
                 user.CreateDate = DateTime.Now;

@@ -35,63 +35,54 @@
                     <p>
                         @Html.Raw(Model.Description)
                     </p>
-
-
-
                 </div>
-               
-                <div class="reviews" style="margin-top:100px;">
-                   
-                    <h3>Total Coments (46)</h3>
-                    <ol class="comment-list">
-                        <li class="comment">
-                            <div class="comment-info">
-                                    @foreach (var com in ViewBag.Commentss)
-                                    {
-                                <div class="author-desc">
-                                    <div class="author-title">
-                                    
-                                        <strong>@com.FullName</strong>
-                                        <ul class="list-inline pull-right">
-                                            <li>@com.CreateDate.ToShortDateString() </li>
-                                           
-                                        </ul>
-                                   
 
-                                    </div>
-                                    <p>@com.Article</p>
-                                </div>
-                                    }
+
+                <div class="post-comments" style="margin-top:100px;">
+                    <div class="block-title">
+                        <h3>Yorum (@Model.Comments.Count)</h3>
+                    </div>
+@foreach (var com in ViewBag.Commentss)
+{
+                    <div class="media">
+
+                        <div class="media-body">
+                            <div class="media-heading">
+                                <a href="#">@com.FullName</a> <span class="divider">|</span> <span class="light-gray">@com.CreateDate.ToShortTimeString()</span>
                             </div>
-                           
-                        </li>
-                        
-                    </ol>
-                   
+                            <p>@com.Article</p>
+                            <div class="media-footer">
+                                
+                                <span class="divider"></span>
+                            
+                            </div>
+
+                        </div>
+                    </div>
+}
                 </div>
-               
-
-                <div class="commentform" style="margin-top:50px;">
-                    <form class="row">
-                        <div class="col-md-6 col-sm-12">
-                            <div class="form-group">
-                                <label>Ad Soyad <span class="required">*</span></label>
-                                <input id="fullnames" class="form-control" type="text">
-                            </div>
+                
+          
+                <div class="post-comment-add" style="margin-top:20px;">
+                    <div class="block-title">
+                        <h3>Yorum Yap</h3>
+                    </div>
+                    <form class="form-add-comment">
+                        <div class="form-group">
+                            <input id="fullnames" class="form-control" placeholder="Ad Soyad" name="name">
+                            <div class="form-control-border"></div>
+                            <i class="form-control-icon fa fa-user"></i>
                         </div>
-                        <div class="col-md-12 col-sm-12">
-                            <div class="form-group">
-                                <label>Yorum <span class="required">*</span></label>
-                                <textarea id="yorum" class="form-control" placeholder="" rows="8" cols="6"></textarea>
-                            </div>
+                        <div class="form-group">
+                            <textarea id="yorum" class="form-control" placeholder="Mesajınız..." name="message"></textarea>
+                            <div class="form-control-border"></div>
+                            <i class="form-control-icon fa fa-comment"></i>
                         </div>
-                      
-                       
-                        <div class="col-md-12 col-sm-12">
-                            <button class="btn btn-colored-blog" type="button" id="gonder">Yorum Yap</button>
-                        </div>
+                        <input id="gonder" placeholder="Gönder" class="button" type="submit">
                     </form>
                 </div>
+
+                
 
             </div>
 
@@ -158,13 +149,17 @@
         $("#gonder").click(function () {
             var yorumunuz = $("#yorum").val();
             var adsoyad = $("#fullnames").val();
+            if (yorumunuz == "" || adsoyad == "") {
+                alert("Boş Geçilemez!");
+                return false;
+            }
+
             $.ajax({
                 url: '/Post/SendComment',
                 data: { fullName: adsoyad, article: yorumunuz, postid: @Model.Id },
                 type: 'POST',
                 dataType: 'json',
                 success: function (data) {
-
                     alert("Yorumunuz Gönderildi. Yönetici onayından sonra yayınlanacaktır.");
                     window.location.reload();
                 }
